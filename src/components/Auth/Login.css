@@ -14,16 +14,16 @@
 .login__formBox {
   background-color: white;
   box-shadow: 0px 0px 10px gray;
+  min-width: 480px;
 }
 
 .login > form {
-  max-width: 480px;
-  min-width: 300px;
+ 
   background-color: white;
 }
 
 .login > p {
-  margin-bottom: 40px;
+  
 }
 
 .login > .login__formBox > form {
@@ -36,7 +36,6 @@
   flex-wrap: nowrap;
   display: flex;
   justify-content: space-between;
-  width: 480px;
   background-color: white;
 }
 
@@ -54,7 +53,7 @@
 }
 
 .login > .login__formBox > .login__formOptions > button:hover {
-  cursor: pointer;
+  
 }
 
 .login__inputs > input {

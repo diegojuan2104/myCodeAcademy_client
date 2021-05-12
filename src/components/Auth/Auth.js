@@ -1,7 +1,7 @@
 //rfce
 import React, { useState } from "react";
 import axiosClient from "../../config/axios";
-import "./Login.css";
+import "./Auth.scss";
 
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
@@ -31,32 +31,43 @@ function Login() {
     console.log(res);
   };
   return (
-    <div className="login">
-      <h1>My code Academy</h1>
-      <h2>For Developers</h2>
-      <p>Practice coding, prepare for interviews, and get hired.</p>
+    <div className="auth">
+      <h1 className="auth__title">My code Academy</h1>
+      <h2 className="auth__subtitle">For Developers</h2>
+      <p className="auth__subtitle-text">
+        Practice coding, prepare for interviews, and get hired.
+      </p>
 
-      <div className="login__formBox">
-        <div className="login__formOptions">
+      <div className="auth-form">
+        <div className="auth-form__options">
           <button
-            className={login ? "" : "selected"}
+            className={
+              login
+                ? "auth-form__option"
+                : " auth-form__option auth-form__option--selected"
+            }
             onClick={() => changeLogin(false)}
           >
             Sign up
           </button>
           <button
-            className={login ? "selected" : ""}
+            className={
+              !login
+                ? "auth-form__option"
+                : " auth-form__option auth-form__option--selected"
+            }
             onClick={() => changeLogin(true)}
           >
             Log in
           </button>
         </div>
 
-        <form>
-          <div className="login__inputs">
-            <div className="login__inputBox">
+        <form className="auth-form__form">
+          <div className="auth-form__text-inputs">
+            <div className="auth-form__text-input-box">
               <PersonOutlineIcon />
               <input
+                className="auth-form__text-input"
                 type="text"
                 placeholder="Username"
                 value={username}
@@ -64,9 +75,10 @@ function Login() {
                 name="username"
               />
             </div>
-            <div className="login__inputBox">
+            <div className="auth-form__text-input-box">
               <MailOutlineIcon />
               <input
+                className="auth-form__text-input"
                 type="text"
                 placeholder="Email"
                 value={email}
@@ -74,9 +86,10 @@ function Login() {
                 name="email"
               />
             </div>
-            <div className="login__inputBox">
+            <div className="auth-form__text-input-box">
               <LockIcon />
               <input
+                className="auth-form__text-input"
                 type="text"
                 placeholder="Your password"
                 value={password}
@@ -85,14 +98,14 @@ function Login() {
               />
             </div>
 
-            <button type="submit" onClick={onSubmitLogin}>
+            <button className="auth-form__submit-button" type="submit" onClick={onSubmitLogin}>
               Create An Account
             </button>
           </div>
         </form>
 
-        <div className="login__socialConection">
-          <div ></div>
+        <div className="auth-form__social-conection">
+          <div></div>
           <p> or connect with</p>
           <div></div>
         </div>
