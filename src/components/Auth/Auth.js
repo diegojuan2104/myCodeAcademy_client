@@ -35,7 +35,13 @@ function Login() {
 
   const onSubmitLogin = async (e) => {
     e.preventDefault();
-    const res = await axiosClient.post("/api/users/", user);
+    let res;
+    if (login) {
+      res = await axiosClient.post("/api/auth/", user);
+    } else {
+      res = await axiosClient.post("/api/users/", user);
+    }
+
     console.log(res);
   };
 
@@ -145,7 +151,7 @@ function Login() {
               type="submit"
               onClick={onSubmitLogin}
             >
-              { login ? "Log In" : "Create An Account"}
+              {login ? "Log In" : "Create An Account"}
             </button>
           </div>
         </form>
