@@ -3,19 +3,32 @@ import React, { useState } from "react";
 import axiosClient from "../../config/axios";
 import "./Auth.scss";
 
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import MailOutlineIcon from "@material-ui/icons/MailOutline";
-import LockIcon from "@material-ui/icons/Lock";
-
+//MaterialUI
 import Facebook_icon from "../../images/Facebook_icon.png";
 import Google_icon from "../../images/Google_icon.png";
 import LinkedIn_icon from "../../images/Linkedin_icon.png";
 import Github_icon from "../../images/Github_icon.png";
-
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
+import MailOutlineIcon from "@material-ui/icons/MailOutline";
+import LockIcon from "@material-ui/icons/Lock";
+
+//Redux
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction, signupAction } from "../../redux/actions/authActions";
+
+import Loading from "../Loading/Loading";
 
 function Login() {
+  const dispatch = useDispatch();
+
+  const loading = useSelector((state) => state.auth.loading);
+  const error = useSelector((state) => state.auth.error);
+
+  const loginUser = (user) => dispatch(loginAction(user));
+  const signupUser = (user) => dispatch(signupAction(user));
+
   const [user, updateUser] = useState({
     email: "",
     password: "",
@@ -23,6 +36,27 @@ function Login() {
   });
 
   const { email, password, username } = user;
+
+  const onSubmitLogin = async (e) => {
+    e.preventDefault();
+
+    //Validation
+    if (email.trim() === "" || password.trim() === "") {
+      alert("Must fill all the fields");
+      return;
+    }
+
+    if (login) {
+      loginUser(user);
+    } else {
+      //Username validation
+      if (username.trim() === "") {
+        alert("Must fill all the fields");
+        return;
+      }
+      signupUser(user);
+    }
+  };
 
   const handleChange = (e) => {
     updateUser({
@@ -32,18 +66,6 @@ function Login() {
   };
 
   const [login, changeLogin] = useState(false);
-
-  const onSubmitLogin = async (e) => {
-    e.preventDefault();
-    let res;
-    if (login) {
-      res = await axiosClient.post("/api/auth/", user);
-    } else {
-      res = await axiosClient.post("/api/users/", user);
-    }
-
-    console.log(res);
-  };
 
   const [rememberMeChecked, setRememberMeChecked] = useState(true);
 
@@ -59,118 +81,126 @@ function Login() {
       </p>
 
       <div className="auth__form">
-        <div className="auth__form__options">
-          <button
-            className={
-              login
-                ? "auth__form__option"
-                : "auth__form__option auth__form__option--selected"
-            }
-            onClick={() => changeLogin(false)}
-          >
-            Sign up
-          </button>
-          <button
-            className={
-              !login
-                ? "auth__form__option"
-                : "auth__form__option auth__form__option--selected"
-            }
-            onClick={() => changeLogin(true)}
-          >
-            Log in
-          </button>
-        </div>
-
-        <form className="auth__form__form">
-          <div className="auth__form__text-inputs">
-            {!login && (
-              <div className="auth__form__text-input-box">
-                <PersonOutlineIcon className="auth__form__text-input-icon" />
-                <input
-                  className="auth__form__text-input"
-                  type="text"
-                  placeholder="Username"
-                  value={username}
-                  onChange={handleChange}
-                  name="username"
-                />
-              </div>
-            )}
-
-            <div className="auth__form__text-input-box">
-              <MailOutlineIcon className="auth__form__text-input-icon" />
-              <input
-                className="auth__form__text-input"
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={handleChange}
-                name="email"
-              />
+        {loading ? (
+          <div className="auth__form__loading">
+            <Loading loading={true} />
+          </div>
+        ) : (
+          <div>
+            <div className="auth__form__options">
+              <button
+                className={
+                  login
+                    ? "auth__form__option"
+                    : "auth__form__option auth__form__option--selected"
+                }
+                onClick={() => changeLogin(false)}
+              >
+                Sign up
+              </button>
+              <button
+                className={
+                  !login
+                    ? "auth__form__option"
+                    : "auth__form__option auth__form__option--selected"
+                }
+                onClick={() => changeLogin(true)}
+              >
+                Log in
+              </button>
             </div>
 
-            <div className="auth__form__text-input-box">
-              <LockIcon className="auth__form__text-input-icon" />
-              <input
-                className="auth__form__text-input"
-                type="password"
-                placeholder="Your password"
-                value={password}
-                onChange={handleChange}
-                name="password"
-              />
-            </div>
+            <form className="auth__form__form">
+              <div className="auth__form__text-inputs">
+                {!login && (
+                  <div className="auth__form__text-input-box">
+                    <PersonOutlineIcon className="auth__form__text-input-icon" />
+                    <input
+                      className="auth__form__text-input"
+                      type="text"
+                      placeholder="Username"
+                      value={username}
+                      onChange={handleChange}
+                      name="username"
+                    />
+                  </div>
+                )}
 
-            {login && (
-              <div className="auth__form__login-options">
-                <div className="auth__form__login-options-rememberme">
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        color="default"
-                        checked={rememberMeChecked}
-                        onChange={handleChangeCheck}
-                      />
-                    }
-                    label="Remember me"
+                <div className="auth__form__text-input-box">
+                  <MailOutlineIcon className="auth__form__text-input-icon" />
+                  <input
+                    className="auth__form__text-input"
+                    type="text"
+                    placeholder="Email"
+                    value={email}
+                    onChange={handleChange}
+                    name="email"
                   />
                 </div>
 
-                <a
-                  href="#"
-                  className="auth__form__login-options-forgot-password"
+                <div className="auth__form__text-input-box">
+                  <LockIcon className="auth__form__text-input-icon" />
+                  <input
+                    className="auth__form__text-input"
+                    type="password"
+                    placeholder="Your password"
+                    value={password}
+                    onChange={handleChange}
+                    name="password"
+                  />
+                </div>
+
+                {login && (
+                  <div className="auth__form__login-options">
+                    <div className="auth__form__login-options-rememberme">
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            color="default"
+                            checked={rememberMeChecked}
+                            onChange={handleChangeCheck}
+                          />
+                        }
+                        label="Remember me"
+                      />
+                    </div>
+
+                    <a
+                      href="#"
+                      className="auth__form__login-options-forgot-password"
+                    >
+                      Forgot your password?
+                    </a>
+                  </div>
+                )}
+
+                <button
+                  className="auth__form__submit-button"
+                  type="submit"
+                  onClick={onSubmitLogin}
                 >
-                  Forgot your password?
-                </a>
+                  {login ? "Log In" : "Create An Account"}
+                </button>
               </div>
-            )}
+            </form>
 
-            <button
-              className="auth__form__submit-button"
-              type="submit"
-              onClick={onSubmitLogin}
-            >
-              {login ? "Log In" : "Create An Account"}
-            </button>
+            <div className="auth__form__social-conection">
+              <div></div>
+              <p> or connect with</p>
+              <div></div>
+            </div>
+
+            <div className="auth__form__social-conection-icons">
+              <img src={Facebook_icon} alt="" />
+              <div></div>
+              <img src={Google_icon} alt="" />
+              <div></div>
+              <img src={LinkedIn_icon} alt="" />
+              <div></div>
+              <img src={Github_icon} alt="" />
+            </div>
           </div>
-        </form>
-
-        <div className="auth__form__social-conection">
-          <div></div>
-          <p> or connect with</p>
-          <div></div>
-        </div>
-
-        <div className="auth__form__social-conection-icons">
-          <img src={Facebook_icon} alt="" />
-          <div></div>
-          <img src={Google_icon} alt="" />
-          <div></div>
-          <img src={LinkedIn_icon} alt="" />
-          <div></div>
-          <img src={Github_icon} alt="" />
-        </div>
+        )}
       </div>
       <p className="auth__terms">
         By signing up you agree to our Terms of Service and Privacy Policy
