@@ -6,9 +6,12 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   LOG_OUT,
+  GET_USER,
 } from "../types/index";
 import axiosClient from "../../config/axios";
 import Swal from "sweetalert2";
+import tokenAuth from "../../config/token";
+import { useRef } from "react";
 
 //LOGIN ACTION
 export function loginAction(user) {
@@ -17,7 +20,10 @@ export function loginAction(user) {
     try {
       const res = await axiosClient.post("/api/auth/", user);
       console.log(res);
-      dispatch(loginSuccess(res));
+      dispatch(loginSuccess(res.data));
+
+      //Get user
+      dispatch(authenticatedUser());
 
       //Alert
       Swal.fire("Correcto", "Login success", "success");
@@ -56,7 +62,7 @@ export function signupAction(user) {
     try {
       const res = await axiosClient.post("/api/users/", user);
       console.log(res);
-      dispatch(signupSuccess(res));
+      dispatch(signupSuccess(res.data));
 
       //Alert
       Swal.fire("Correcto", "Sing Up succed", "success");
@@ -86,4 +92,26 @@ const signupSuccess = (token) => ({
 const signupError = (estado) => ({
   type: SIGNUP_ERROR,
   payload: estado,
+});
+
+//Returns the user if there is a token
+function authenticatedUser() {
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      tokenAuth(token);
+    }
+    try {
+      const res = await axiosClient.get("/api/auth/");
+      console.log(res);
+      dispatch(getUser(res.data.user));
+    } catch (error) {
+      dispatch(loginError(true));
+    }
+  };
+}
+
+const getUser = (user) => ({
+  type: GET_USER,
+  payload: user,
 });
