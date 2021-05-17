@@ -1,10 +1,15 @@
 import "./App.css";
-import Auth from "./components/Auth/Auth.js";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+//Components
+import Auth from "./components/Auth/Auth";
+import Dashboard from "./components/Dashboard/Dashboard"
 
 //Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
+
+import PrivateRoute from "./Routes/PrivateRoute"
 
 function App() {
   return (
@@ -13,6 +18,7 @@ function App() {
         <Provider store={store}>
           <Switch>
             <Route exact path="/" component={Auth} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Switch>
         </Provider>
       </Router>

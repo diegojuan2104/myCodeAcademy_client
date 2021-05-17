@@ -1,5 +1,5 @@
 //rfce
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axiosClient from "../../config/axios";
 import "./Auth.scss";
 
@@ -20,11 +20,23 @@ import { loginAction, signupAction } from "../../redux/actions/authActions";
 
 import Loading from "../Loading/Loading";
 
-function Login() {
+function Login(props) {
   const dispatch = useDispatch();
 
   const loading = useSelector((state) => state.auth.loading);
+  const authenticated = useSelector((state) => state.auth.authenticated);
   const error = useSelector((state) => state.auth.error);
+
+  //En caso de mensaje
+  useEffect(() => {
+    console.log('====================================');
+    console.log(authenticated);
+    console.log('====================================');
+    if (authenticated) {
+      props.history.push("/dashboard");
+    }
+  //eslint-disable-next-line
+  }, [authenticated]);
 
   const loginUser = (user) => dispatch(loginAction(user));
   const signupUser = (user) => dispatch(signupAction(user));
@@ -42,7 +54,7 @@ function Login() {
 
     //Validation
     if (email.trim() === "" || password.trim() === "") {
-      alert("Must fill all the fields");
+      alert("Must fill all the fields.");
       return;
     }
 
@@ -72,6 +84,10 @@ function Login() {
   const handleChangeCheck = (event) => {
     setRememberMeChecked(event.target.checked);
   };
+
+  const commingSoon = () => {
+    alert("Coming Soon! You can do a normal registration for now.")
+  }
   return (
     <div className="auth">
       <h1 className="auth__title">My code Academy</h1>
@@ -191,13 +207,13 @@ function Login() {
             </div>
 
             <div className="auth__form__social-conection-icons">
-              <img src={Facebook_icon} alt="" />
+              <img src={Facebook_icon} alt="" onClick={commingSoon} />
               <div></div>
-              <img src={Google_icon} alt="" />
+              <img src={Google_icon} alt="" onClick={commingSoon}  />
               <div></div>
-              <img src={LinkedIn_icon} alt="" />
+              <img src={LinkedIn_icon} alt="" onClick={commingSoon}  />
               <div></div>
-              <img src={Github_icon} alt="" />
+              <img src={Github_icon} alt="" onClick={commingSoon}  />
             </div>
           </div>
         )}

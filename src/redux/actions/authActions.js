@@ -6,12 +6,13 @@ import {
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
   LOG_OUT,
-  GET_USER,
+  GETUSER_PROCESS,
+  GETUSER_SUCCESS,
+  GETUSER_ERROR
 } from "../types/index";
 import axiosClient from "../../config/axios";
 import Swal from "sweetalert2";
 import tokenAuth from "../../config/token";
-import { useRef } from "react";
 
 //LOGIN ACTION
 export function loginAction(user) {
@@ -26,14 +27,14 @@ export function loginAction(user) {
       dispatch(authenticatedUser());
 
       //Alert
-      Swal.fire("Correcto", "Login success", "success");
+      Swal.fire("Success", "Login success", "success");
     } catch (error) {
-      console.log(error);
-      dispatch(loginError(true));
+     
+      dispatch(loginError(error.response.data.msg));
 
       Swal.fire({
         icon: "error",
-        title: "There was an error",
+        title: error.response.data.msg,
         text: "error",
       });
     }
@@ -64,16 +65,19 @@ export function signupAction(user) {
       console.log(res);
       dispatch(signupSuccess(res.data));
 
+      //Get user
+      dispatch(authenticatedUser());
+
       //Alert
       Swal.fire("Correcto", "Sing Up succed", "success");
     } catch (error) {
-      console.log(error);
-      dispatch(signupError(true));
+
+      dispatch(signupError(error.response.data));
 
       Swal.fire({
         icon: "error",
         title: "There was an error",
-        text: "error",
+        text: error.response.data.errors ?  error.response.data.errors[0].msg : error.response.data.msg,
       });
     }
   };
@@ -89,29 +93,39 @@ const signupSuccess = (token) => ({
   payload: token,
 });
 
-const signupError = (estado) => ({
+const signupError = (state) => ({
   type: SIGNUP_ERROR,
-  payload: estado,
+  payload: state,
 });
 
 //Returns the user if there is a token
-function authenticatedUser() {
+export function authenticatedUser() {
   return async (dispatch) => {
     const token = localStorage.getItem("token");
     if (token) {
       tokenAuth(token);
     }
     try {
+      dispatch(getUser());
       const res = await axiosClient.get("/api/auth/");
       console.log(res);
-      dispatch(getUser(res.data.user));
+      dispatch(getUserSuccess(res.data.user));
     } catch (error) {
-      dispatch(loginError(true));
+      dispatch(getUserError());
     }
   };
 }
 
-const getUser = (user) => ({
-  type: GET_USER,
+const getUser = () => ({
+  type: GETUSER_PROCESS,
+});
+
+
+const getUserSuccess = (user) => ({
+  type: GETUSER_SUCCESS,
   payload: user,
+});
+
+const getUserError = () => ({
+  type: GETUSER_ERROR,
 });

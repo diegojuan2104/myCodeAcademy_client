@@ -7,4 +7,6 @@ export const SIGNUP_SUCCESS = "SINGUP_SUCCESS"
 export const SIGNUP_ERROR = "SINGUP_ERROR"
 
 export const LOG_OUT = "LOG_OUT";
-export const GET_USER = "GET_USER";
+export const GETUSER_PROCESS = "GETUSER_PROCESS";
+export const GETUSER_SUCCESS = "GETUSER_SUCCESS";
+export const GETUSER_ERROR = "GETUSER_ERROR";
