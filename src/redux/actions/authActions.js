@@ -26,8 +26,6 @@ export function loginAction(user) {
       //Get user
       dispatch(authenticatedUser());
 
-      //Alert
-      Swal.fire("Success", "Login success", "success");
     } catch (error) {
      
       dispatch(loginError(error.response.data.msg));
@@ -69,7 +67,7 @@ export function signupAction(user) {
       dispatch(authenticatedUser());
 
       //Alert
-      Swal.fire("Correcto", "Sing Up succed", "success");
+      Swal.fire("Succed", "Sing Up Completed!", "success");
     } catch (error) {
 
       dispatch(signupError(error.response.data));
@@ -128,4 +126,15 @@ const getUserSuccess = (user) => ({
 
 const getUserError = () => ({
   type: GETUSER_ERROR,
+});
+
+//User logout
+export function logoutAction() {
+  return async (dispatch) => {
+      dispatch(logout());
+  };
+}
+
+const logout = () => ({
+  type: LOG_OUT,
 });

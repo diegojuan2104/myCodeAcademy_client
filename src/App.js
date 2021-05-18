@@ -2,13 +2,13 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Components
-import Auth from "./components/Auth/Auth";
-import Dashboard from "./components/Dashboard/Dashboard"
+import Auth from "./components/Auth/Auth.component.js";
+import Dashboard from "./components/Dashboard/Dashboard.component.js"
+import Header from "./components/Header/Header.component.js"
 
 //Redux
 import { Provider } from "react-redux";
 import store from "./redux/store";
-
 import PrivateRoute from "./Routes/PrivateRoute"
 
 function App() {
