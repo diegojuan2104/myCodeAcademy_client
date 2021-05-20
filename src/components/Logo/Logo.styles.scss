@@ -1,0 +1,12 @@
+$primary-color: #0e76a8;
+.logo {
+  cursor: pointer;
+  &__c {
+    background-color: $primary-color;
+    color: white;
+    margin-right: 2px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-style: normal;
+  }
+}

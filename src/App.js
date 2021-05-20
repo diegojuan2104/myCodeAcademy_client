@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //Components
 import Auth from "./components/Auth/Auth.component.js";
-import Dashboard from "./components/Dashboard/Dashboard.component.js"
+import Home from "./components/Home/Home.component.js"
 import Header from "./components/Header/Header.component.js"
 
 //Redux
@@ -18,7 +18,7 @@ function App() {
         <Provider store={store}>
           <Switch>
             <Route exact path="/" component={Auth} />
-            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/home" component={Home} />
           </Switch>
         </Provider>
       </Router>

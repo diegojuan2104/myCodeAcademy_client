@@ -1,6 +1,5 @@
 //rfce
 import React, { useState, useEffect } from "react";
-import axiosClient from "../../config/axios";
 import "./Auth.styles.scss";
 
 //MaterialUI
@@ -22,6 +21,8 @@ import { loginAction, signupAction } from "../../redux/actions/authActions";
 
 import Loading from "../Loading/Loading.component";
 
+import Logo from "../Logo/Logo.component"
+
 function Login(props) {
 
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ function Login(props) {
 
   useEffect(() => {
     if(authenticated){
-      props.history.push("/dashboard");
+      props.history.push("/home");
     }
     //eslint-disable-next-line
   }, [authenticated]);
@@ -61,7 +62,7 @@ function Login(props) {
       loginUser(user).then(() =>
         {
           if(authenticated) {
-            props.history.push("/dashboard");
+            props.history.push("/home");
           }
         }
       );
@@ -94,6 +95,10 @@ function Login(props) {
     alert("Coming Soon! You can do a normal registration for now.");
   };
 
+
+  const mediaQuery = window.matchMedia('(min-width: 768px)')
+
+  console.log(mediaQuery)
   return (
     <div>
       {loading ? (
@@ -102,7 +107,7 @@ function Login(props) {
         </div>
       ) : (
         <div className="auth">
-          <h1 className="auth__title">My code Academy</h1>
+          <div className="auth__title"> <Logo  size="35px"/></div>
           <h2 className="auth__subtitle">For Developers</h2>
           <p className="auth__subtitle-text">
             Practice coding, prepare for interviews, and get hired.

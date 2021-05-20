@@ -1,3 +1,4 @@
+$primary-color: #0e76a8;
 .header {
   position: sticky;
   top: 0;
@@ -38,13 +39,14 @@
       margin-right: 30px;
       list-style-type: none;
       a {
-        color: lightgray;
+        cursor: pointer;
+        color: white;
         text-decoration: none;
         font-weight: 700;
       }
 
       a:hover {
-        color: white;
+        font-size: 17px;
       }
     }
 
