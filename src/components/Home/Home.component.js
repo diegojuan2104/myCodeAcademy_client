@@ -4,8 +4,9 @@ import Loading from "../Loading/Loading.component";
 
 import { authenticatedUser } from "../../redux/actions/authActions";
 import Header from "../Header/Header.component";
+import Auth from "../Auth/Auth.component"
 
-function Dashboard(props) {
+function Home(props) {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
 
@@ -23,10 +24,11 @@ function Dashboard(props) {
       ) : (
         <div>
           <Header />
+          <h1>Home</h1>
         </div>
       )}
     </div>
   );
 }
 
-export default Dashboard;
+export default Home;

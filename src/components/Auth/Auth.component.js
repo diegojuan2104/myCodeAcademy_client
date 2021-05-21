@@ -62,7 +62,7 @@ function Login(props) {
       loginUser(user).then(() =>
         {
           if(authenticated) {
-            props.history.push("/home");
+            props.history.push("/dashboard");
           }
         }
       );
@@ -107,7 +107,7 @@ function Login(props) {
         </div>
       ) : (
         <div className="auth">
-          <div className="auth__title"> <Logo  size="35px"/></div>
+          <div className="auth__title"> <Logo className="logo"p size="35px"/></div>
           <h2 className="auth__subtitle">For Developers</h2>
           <p className="auth__subtitle-text">
             Practice coding, prepare for interviews, and get hired.

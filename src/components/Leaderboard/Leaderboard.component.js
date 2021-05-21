@@ -1,9 +1,11 @@
 import React from 'react'
+import Header from '../Header/Header.component'
 
 function Leaderboard() {
     return (
         <div>
-            <h1>Practice</h1>
+            <Header/>
+            <h1>Leaderboard</h1>
         </div>
     )
 }

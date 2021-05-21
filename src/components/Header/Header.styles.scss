@@ -6,48 +6,53 @@ $primary-color: #0e76a8;
   align-items: center;
   background-color: #40444c;
   width: 100%;
-  position: fixed;
-  padding: 15px;
-
-  &__logo {
-    color: #ffffff;
-    font-size: 30px;
-    font-weight: 700;
-  }
-
+  z-index: 999;
+  
   .MuiSvgIcon-root {
     display: none;
   }
 
   @media (max-width: 1008px) {
     &__logo {
-        font-size: 25px;
-      }
+      font-size: 25px;
+    }
   }
 
   &__options {
     display: flex;
     list-style: none;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
+
 
     .header__logo {
       display: flex;
+ 
     }
     .header__option {
-      margin-right: 30px;
       list-style-type: none;
-      a {
-        cursor: pointer;
-        color: white;
-        text-decoration: none;
-        font-weight: 700;
+      padding: 10px;
+      cursor: pointer;
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      align-self: center;
+     
+      &:hover {
+        border-bottom: solid 5px $primary-color;
       }
+    }
 
-      a:hover {
-        font-size: 17px;
-      }
+    .header__option--active {
+      border-bottom: solid 5px $primary-color;
+    }
+
+    .header__option--avatar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
     }
 
     &-left {
@@ -62,6 +67,8 @@ $primary-color: #0e76a8;
   }
 
   @media (max-width: 768px) {
+    justify-content: space-around;
+    padding: 15px;
     .MuiSvgIcon-root {
       display: block;
       color: white;
@@ -76,8 +83,7 @@ $primary-color: #0e76a8;
 
     &__options {
       flex-direction: column;
-      
-
+     
       &-left {
         flex-direction: column;
         align-items: center;
@@ -90,11 +96,10 @@ $primary-color: #0e76a8;
     }
 
     .header__option {
-        margin-right: 0px;
-        margin-top: 10px;
+      margin-right: 0px;
+      margin-top: 10px;
     }
   }
-
 }
 
 @media (max-width: 768px) {
@@ -102,5 +107,3 @@ $primary-color: #0e76a8;
     display: none;
   }
 }
-
-

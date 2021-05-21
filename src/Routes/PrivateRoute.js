@@ -4,6 +4,7 @@ import { Route, Redirect } from "react-router-dom";
 import { authenticatedUser } from "../redux/actions/authActions";
 import { useDispatch, useSelector } from "react-redux";
 
+import Auth from "../components/Auth/Auth.component"
 
 const PrivateRoute = ({ component: Component, ...props }) => {
 
@@ -25,7 +26,7 @@ const PrivateRoute = ({ component: Component, ...props }) => {
     
     return (
         <Route
-            {...props} render={props => !authenticated && !loading ? (<Redirect to="/" />) : (
+            {...props} render={props => !authenticated && !loading ? (<Auth />) : (
                 <Component{...props} />)
             }
         />

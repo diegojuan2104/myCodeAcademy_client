@@ -1,9 +1,11 @@
 import React from 'react'
+import Header from '../Header/Header.component'
 
 function Learn() {
     return (
         <div>
-            <h1>Practice</h1>
+            <Header />
+            <h1>learn</h1>
         </div>
     )
 }
