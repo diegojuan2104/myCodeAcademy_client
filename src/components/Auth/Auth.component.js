@@ -21,10 +21,10 @@ import { loginAction, signupAction } from "../../redux/actions/authActions";
 
 import Loading from "../Loading/Loading.component";
 
-import Logo from "../Logo/Logo.component"
+import Logo from "../Logo/Logo.component";
+import { Camera, CameraAltOutlined } from "@material-ui/icons";
 
-function Login(props) {
-
+function Auth(props) {
   const dispatch = useDispatch();
 
   const loading = useSelector((state) => state.auth.loading);
@@ -32,7 +32,7 @@ function Login(props) {
   const error = useSelector((state) => state.auth.error);
 
   useEffect(() => {
-    if(authenticated){
+    if (authenticated) {
       props.history.push("/home");
     }
     //eslint-disable-next-line
@@ -45,9 +45,10 @@ function Login(props) {
     email: "",
     password: "",
     username: "",
+    photo_url: "",
   });
 
-  const { email, password, username } = user;
+  const { email, password, username, photo_url } = user;
 
   const onSubmitLogin = async (e) => {
     e.preventDefault();
@@ -59,13 +60,11 @@ function Login(props) {
     }
 
     if (login) {
-      loginUser(user).then(() =>
-        {
-          if(authenticated) {
-            props.history.push("/dashboard");
-          }
+      loginUser(user).then(() => {
+        if (authenticated) {
+          props.history.push("/dashboard");
         }
-      );
+      });
     } else {
       //Username validation
       if (username.trim() === "") {
@@ -95,10 +94,6 @@ function Login(props) {
     alert("Coming Soon! You can do a normal registration for now.");
   };
 
-
-  const mediaQuery = window.matchMedia('(min-width: 768px)')
-
-  console.log(mediaQuery)
   return (
     <div>
       {loading ? (
@@ -107,7 +102,10 @@ function Login(props) {
         </div>
       ) : (
         <div className="auth">
-          <div className="auth__title"> <Logo className="logo"p size="35px"/></div>
+          <div className="auth__title">
+            {" "}
+            <Logo className="logo" p size="35px" />
+          </div>
           <h2 className="auth__subtitle">For Developers</h2>
           <p className="auth__subtitle-text">
             Practice coding, prepare for interviews, and get hired.
@@ -140,20 +138,6 @@ function Login(props) {
 
               <form className="auth__form__form">
                 <div className="auth__form__text-inputs">
-                  {!login && (
-                    <div className="auth__form__text-input-box">
-                      <PersonOutlineIcon className="auth__form__text-input-icon" />
-                      <input
-                        className="auth__form__text-input"
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={handleChange}
-                        name="username"
-                      />
-                    </div>
-                  )}
-
                   <div className="auth__form__text-input-box">
                     <MailOutlineIcon className="auth__form__text-input-icon" />
                     <input
@@ -177,6 +161,34 @@ function Login(props) {
                       name="password"
                     />
                   </div>
+
+                  {!login && (
+                    <div className="auth__form__text-input-box">
+                      <PersonOutlineIcon className="auth__form__text-input-icon" />
+                      <input
+                        className="auth__form__text-input"
+                        type="text"
+                        placeholder="Username"
+                        value={username}
+                        onChange={handleChange}
+                        name="username"
+                      />
+                    </div>
+                  )}
+
+                  {!login && (
+                    <div className="auth__form__text-input-box">
+                      <CameraAltOutlined className="auth__form__text-input-icon" />
+                      <input
+                        className="auth__form__text-input"
+                        type="text"
+                        placeholder="Photo URL (Optional)"
+                        value={photo_url}
+                        onChange={handleChange}
+                        name="photo_url"
+                      />
+                    </div>
+                  )}
 
                   {login && (
                     <div className="auth__form__login-options">
@@ -238,4 +250,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default Auth;

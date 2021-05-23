@@ -1,6 +1,10 @@
 $primary-color: #0e76a8;
 .logo {
   cursor: pointer;
+  
+  @media (max-width:768px) {
+    font-size: 30px;
+  }
   &__c {
     background-color: $primary-color;
     color: white;
@@ -9,4 +13,5 @@ $primary-color: #0e76a8;
     border-radius: 3px;
     font-style: normal;
   }
+
 }

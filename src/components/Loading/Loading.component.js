@@ -6,8 +6,8 @@ import Logo from "../Logo/Logo.component";
 function Loading() {
   return (
     <div className="Loading">
-      <Logo size="45px"/>
-      <h2>Loading</h2>
+      <Logo size="25px"/>
+      <h3>Loading</h3>
       <BeatLoader
         className="Loading__icon"
         color={"#0E76A8"}

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Loading from "../Loading/Loading.component";
+import "./Home.styles.scss";
 
 import { authenticatedUser } from "../../redux/actions/authActions";
 import Header from "../Header/Header.component";
-import Auth from "../Auth/Auth.component"
+import Logo from "../Logo/Logo.component";
 
 function Home(props) {
   const dispatch = useDispatch();
@@ -18,15 +18,24 @@ function Home(props) {
   }, []);
 
   return (
-    <div>
-      {loading ? (
-        <Loading />
-      ) : (
-        <div>
-          <Header />
-          <h1>Home</h1>
+    <div className="container">
+      <Header />
+      <div className="home">
+        <div className="home__logo">
+          <Logo />
         </div>
-      )}
+
+        <div className="home__text">
+          <p>My Code Academy is a platform to learn and practice algorithms.</p>
+          <p>
+            The main objective with this project is to help people study more
+            programming exercises because this is one of the key parts of
+            getting an IT job nowadays in the software development area.
+          </p>
+
+          <p>Developer: <span><a href="">@diegojuan2104</a></span></p>
+        </div>
+      </div>
     </div>
   );
 }

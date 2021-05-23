@@ -52,7 +52,7 @@ function Header() {
               : "header__options-right hidden"
           }
         >
-          <NavLink className="header__option header__option--avatar" to="/">  <Avatar src={user.photo_url? user.photo_url : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg"}/> {user?.username}</NavLink>
+          <NavLink className="header__option header__option--avatar" to="/">  <Avatar src={user?.photo_url? user.photo_url : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg"}/> {user?.username}</NavLink>
           <NavLink className="header__option" onClick={logoutUser} to="/">
             Log Out
           </NavLink>
