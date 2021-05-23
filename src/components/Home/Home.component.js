@@ -28,8 +28,8 @@ function Home(props) {
         <div className="home__text">
           <p>My Code Academy is a platform to learn and practice algorithms.</p>
           <p>
-            The main objective with this project is to help people study more
-            programming exercises because this is one of the key parts of
+            The main objective with this project is help people to study more
+            programming challenges because this is one of the key parts of
             getting an IT job nowadays in the software development area.
           </p>
 
