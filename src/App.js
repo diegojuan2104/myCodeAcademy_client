@@ -11,6 +11,7 @@ import Leaderboard from "./components/Leaderboard/Leaderboard.component.js"
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import PrivateRoute from "./Routes/PrivateRoute"
+import Footer from "./components/Footer/Footer.component";
 
 
 
@@ -26,6 +27,7 @@ function App() {
             <PrivateRoute exact path="/practice" component={Practice} />
             <PrivateRoute exact path="/leaderboard" component={Leaderboard} />
           </Switch>
+          <Footer/>
         </Provider>
       </Router>
     </div>

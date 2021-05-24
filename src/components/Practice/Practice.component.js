@@ -9,7 +9,7 @@ function Practice() {
     <div>
       <Header />
       <div className="practice">
-        <h2>Challenges</h2>
+        <h2 className="practice__title">Challenges</h2>
         <div className="practice__challenge-list">
           <div className="practice__challenge">
             <Challenge

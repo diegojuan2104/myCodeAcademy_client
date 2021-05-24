@@ -3,14 +3,19 @@
     flex-direction: column;
     width: 100%;
     align-items: center;
-    padding: 15px;
+    margin-top: 30px;
+
+    &__title{
+        font-size: 35px;
+
+    }
 
     &__challenge-list{
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 15px;
-        padding: 15px;
+   
         width: 100%;
     }
 
