@@ -1,0 +1,42 @@
+$primary-color: #0e76a8;
+$primary-color--darker: #095477;
+.challenge {
+  width: 60%;
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0px 0px 4px;
+  padding: 20px 10px;
+  align-items: center;
+
+  @media(max-width:768px){
+      flex-direction: column;
+
+      button{
+          margin-top: 10px;
+      }
+  }
+  &__text-content {
+    p {
+      color: gray;
+      font-size: 15px;
+    }
+  }
+  .challenge__solve-button {
+    display: flex;
+    align-items: center;
+    button {
+      color: white;
+      background-color: $primary-color;
+      border-radius: 5px;
+      font-size: 16px;
+      padding: 10px 20px;
+      border: none;
+      font-weight: 700;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $primary-color--darker;
+      }
+    }
+  }
+}
