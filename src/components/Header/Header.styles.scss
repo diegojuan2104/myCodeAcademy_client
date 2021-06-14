@@ -1,4 +1,5 @@
-$primary-color: #0e76a8;
+@import '../utils/colors.styles.scss';
+
 .header {
   position: sticky;
   top: 0;
@@ -6,17 +7,14 @@ $primary-color: #0e76a8;
   align-items: center;
   background-color: #40444c;
   width: 100%;
-  z-index: 999;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  background-color: $secondary-black-darker;
   
-  .MuiSvgIcon-root {
+  .header__btn-menu {
     display: none;
   }
 
-  @media (max-width: 1008px) {
-    &__logo {
-      font-size: 25px;
-    }
-  }
 
   &__options {
     display: flex;
@@ -24,35 +22,36 @@ $primary-color: #0e76a8;
     align-items: center;
     justify-content: space-around;
     width: 100%;
-
-
-    .header__logo {
-      display: flex;
- 
-    }
+    
     .header__option {
-      list-style-type: none;
-      padding: 10px;
       cursor: pointer;
-      color: white;
+      color: whitesmoke;
       text-decoration: none;
       font-weight: 700;
       align-self: center;
-     
-      &:hover {
-        border-bottom: solid 5px $primary-color;
-      }
+      text-transform: uppercase;
     }
 
+    .menu__option{
+      list-style-type: none;
+      padding: 10px;
+
+      &:hover {
+        border-bottom: solid 5px $primary-green;
+      }
+    }
     .header__option--active {
-      border-bottom: solid 5px $primary-color;
+      border-bottom: solid 5px $primary-green;
     }
 
     .header__option--avatar {
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 12px;
+      margin-right: 20px;
+      .header__option--avatar__username{
+       
+      } 
     }
 
     &-left {
@@ -62,16 +61,15 @@ $primary-color: #0e76a8;
 
     &-right {
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
     }
   }
 
   @media (max-width: 768px) {
     justify-content: space-around;
     padding: 15px;
-    .MuiSvgIcon-root {
+    .header__btn-menu {
       display: block;
-      color: white;
       height: 35px;
       width: 35px;
       align-self: flex-start;
@@ -83,13 +81,8 @@ $primary-color: #0e76a8;
 
     &__options {
       flex-direction: column;
-     
-      &-left {
-        flex-direction: column;
-        align-items: center;
-      }
 
-      &-right {
+      &-right, &-left {
         flex-direction: column;
         align-items: center;
       }

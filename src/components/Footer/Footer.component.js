@@ -7,7 +7,6 @@ function Footer() {
     return (
         <footer className="footer">
             <p>Copyright © {year} My Code Academy</p>
-        
         </footer>
     )
 }

@@ -1,17 +1,14 @@
-$primary-color: #0e76a8;
+@import '../utils/colors.styles.scss';
 .logo {
   cursor: pointer;
-  
+  font-weight: bold;
   @media (max-width:768px) {
     font-size: 30px;
   }
   &__c {
-    background-color: $primary-color;
-    color: white;
+    background-color: $primary-green;
     margin-right: 2px;
     padding: 5px 10px;
     border-radius: 3px;
-    font-style: normal;
   }
-
 }

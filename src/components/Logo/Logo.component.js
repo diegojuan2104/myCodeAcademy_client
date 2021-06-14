@@ -5,7 +5,7 @@ function Logo({size, color}) {
 
     
     return (
-        <h1 style={{ fontSize : size, color: color}} className="logo">My <span className="logo__c">C</span>ode Academy</h1>
+        <span style={{ fontSize : size, color: color}} className="logo">My <span className="logo__c">C</span>ode Academy</span>
     )
 }
 

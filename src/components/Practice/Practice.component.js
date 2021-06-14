@@ -9,48 +9,20 @@ function Practice() {
     <div>
       <Header />
       <div className="practice">
-        <h2 className="practice__title">Challenges</h2>
-        <div className="practice__challenge-list">
-          <div className="practice__challenge">
-            <Challenge
-              id="1"
-              title="Simple sum"
-              description="Develop an algorithm to sum two numbers"
-              dificulty="Easy"
-            />
-          </div>
-          <div className="practice__challenge">
-            <Challenge
-              id="2"
-              title="Simple sum"
-              description="Develop an algorithm to sum two numbers"
-              dificulty="Easy"
-            />
-          </div>
-          <div className="practice__challenge">
-            <Challenge
-              id="3"
-              title="Simple sum"
-              description="Develop an algorithm to sum two numbers"
-              dificulty="Easy"
-            />
-          </div>
-          <div className="practice__challenge">
-            <Challenge
-              id="4"
-              title="Simple sum"
-              description="Develop an algorithm to sum two numbers"
-              dificulty="Easy"
-            />
-          </div>
-          <div className="practice__challenge">
-            <Challenge
-              id="5"
-              title="Simple sum"
-              description="Develop an algorithm to sum two numbers"
-              dificulty="Easy"
-            />
-          </div>
+        <div className="practice__content">
+          <h1>Challenges</h1>
+          <table className="challenge-table">
+          <thead className="challenge-table__head">
+          <tr className="head__properties">
+            <th className="head__property">id</th>
+            <th  className="head__property">title</th>
+            <th  className="head__property">Difficulty</th>
+          </tr>
+        </thead>
+        <tbody> 
+          <Challenge id="1" title="Sum" difficulty="hard" />
+        </tbody>
+          </table>
         </div>
       </div>
     </div>

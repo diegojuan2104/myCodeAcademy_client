@@ -1,27 +1,36 @@
-.practice{
+@import "../utils/colors.styles.scss";
+.practice {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+
+  &__content {
+    margin-top: 20px;
+    width: 80%;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    align-items: center;
-    margin-top: 30px;
-    &__title{
-        font-size: 35px;
+
+    h1 {
+      align-self: flex-start;
+      color: $primary-green;
     }
 
-    &__challenge-list{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 15px;
-   
-        width: 100%;
-    }
+    .challenge-table {
+      box-shadow: 0px 0px 10px $secondary-black;
+      border-collapse: collapse;
+      background-color: $secondary-black;
+      margin-top: 20px;
+      width: 100%;
+      text-transform: capitalize;
 
-    &__challenge{
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        align-self: center;
-        margin-top: 20px;
+      &__head{
+          border-bottom: 1px solid $primary-black;
+          .head__property{
+            font-size: 20px;
+            padding: 10px;
+            font-weight: 700;
+          }
+      }
     }
+  }
 }

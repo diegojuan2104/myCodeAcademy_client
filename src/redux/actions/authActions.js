@@ -14,7 +14,6 @@ import axiosClient from "../../config/axios";
 import Swal from "sweetalert2";
 import tokenAuth from "../../config/token";
 
-//LOGIN ACTION
 export function loginAction(user) {
   return async (dispatch) => {
     dispatch(login());
@@ -22,19 +21,13 @@ export function loginAction(user) {
       const res = await axiosClient.post("/api/auth/", user);
       console.log(res);
       dispatch(loginSuccess(res.data));
-
-      //Get user
       dispatch(authenticatedUser());
 
     } catch (error) {
      
       dispatch(loginError(error.response.data.msg));
 
-      Swal.fire({
-        icon: "error",
-        title: error.response.data.msg,
-        text: "error",
-      });
+      alert(error.response.data.msg);
     }
   };
 }
@@ -54,7 +47,6 @@ const loginError = (estado) => ({
   payload: estado,
 });
 
-//SIGNUP
 export function signupAction(user) {
   return async (dispatch) => {
     dispatch(signup());
@@ -62,21 +54,14 @@ export function signupAction(user) {
       const res = await axiosClient.post("/api/users/", user);
       console.log(res);
       dispatch(signupSuccess(res.data));
-
-      //Get user
+      
       dispatch(authenticatedUser());
 
-      //Alert
       Swal.fire("Succed", "Sing Up Completed!", "success");
     } catch (error) {
-
       dispatch(signupError(error.response.data));
-
-      Swal.fire({
-        icon: "error",
-        title: "There was an error",
-        text: error.response.data.errors ?  error.response.data.errors[0].msg : error.response.data.msg,
-      });
+      alert(error.response.data.errors ?  error.response.data.errors[0].msg : error.response.data.msg,
+      )
     }
   };
 }

@@ -1,20 +1,15 @@
 import React from "react";
 import "./Challenge.styles.scss";
-
-function Challenge({ id, title, dificulty, description }) {
+import { Link } from "react-router-dom";
+function Challenge({ id, title, difficulty }) {
   return (
-    <div className="challenge">
-      <div className="challenge__text-content">
-        <h3>
-          {id}) {title}
-        </h3>
-        <p className="challenge__description">{description}</p>
-        <p className="challenge__dificulty">Difficult: {dificulty}</p>
-      </div>
-      <div className="challenge__solve-button">
-        <button>Solve Challenge</button>
-      </div>
-    </div>
+    <tr className="challenge">
+      <td className="challenge__property">
+        {id}
+      </td>
+      <td className="challenge__property "><Link classname="challenge__property--title">{title}</Link></td>
+      <td className="challenge__property">{difficulty}</td>
+    </tr>
   );
 }
 

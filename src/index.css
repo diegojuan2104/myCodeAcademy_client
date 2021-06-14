@@ -4,11 +4,28 @@
 
 body {
   margin: 0;
-  font-family:Arial,Helvetica,sans-serif
+  font-family:Arial,Helvetica,sans-serif;
+  background-color: #303133; 
+  color: whitesmoke;
+  
 }
-
+ 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+}
 code {
   margin: 0;
-
-    
 }
+
+.swal-button {  
+  padding: 7px 19px;  
+  border-radius: 2px;  
+  background-color: red;  
+  font-size: 12px;  
+  border: 1px solid red;  
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.3);  
+}  

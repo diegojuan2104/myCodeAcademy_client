@@ -1,18 +1,17 @@
 import React from "react";
-import BeatLoader from "react-spinners/BeatLoader";
+import BeatLoader from "react-spinners/SkewLoader";
 import "./Loading.styles.scss";
 import Logo from "../Logo/Logo.component";
 
 function Loading() {
   return (
     <div className="Loading">
-      <Logo size="25px"/>
-      <h3>Loading</h3>
+      <Logo className="logo" size="25px"/>
       <BeatLoader
         className="Loading__icon"
-        color={"#0E76A8"}
+        color={"#20ac4c"}
         loading={true}
-        size={25}
+        size={30}
       />
     </div>
   );
