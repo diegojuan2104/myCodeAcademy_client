@@ -1,14 +1,10 @@
 import {
+  AUTH_LOADING,
+  AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  LOGIN_PROCESS,
-  SIGNUP_PROCESS,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR,
   LOG_OUT,
-  GETUSER_PROCESS,
   GETUSER_SUCCESS,
-  GETUSER_ERROR,
 } from "../types/index";
 
 const initialState = {
@@ -22,10 +18,7 @@ const initialState = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default function (state = initialState, action) {
   switch (action.type) {
-    
-    case GETUSER_PROCESS:
-    case SIGNUP_PROCESS:
-    case LOGIN_PROCESS:
+    case AUTH_LOADING:
       return {
         ...state,
         loading: true,
@@ -37,9 +30,8 @@ export default function (state = initialState, action) {
         ...state,
         token: action.payload.token,
       };
-    case SIGNUP_ERROR:
-    case LOGIN_ERROR:
-    case GETUSER_ERROR:
+
+    case AUTH_ERROR:
     case LOG_OUT:
       localStorage.removeItem("token");
       return {

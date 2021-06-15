@@ -37,8 +37,8 @@ function Header() {
           <NavLink activeClassName="header__option--active" className="header__option menu__option" to="/about">
             about
           </NavLink>
-          <NavLink  activeClassName="header__option--active" className="header__option menu__option" to="/practice">
-            practice
+          <NavLink  activeClassName="header__option--active" className="header__option menu__option" to="/challenges">
+          challenges
           </NavLink>
           <NavLink activeClassName="header__option--active" className="header__option menu__option" to="/leaderboard">
             leaderboard
@@ -54,7 +54,7 @@ function Header() {
           }
         >
           <NavLink  onClick={logoutUser} className="header__option header__option--avatar" to="/">
-             <Avatar variant="square" src={user?.photo_url? user.photo_url : "https://thumbs.dreamstime.com/b/default-avatar-profile-icon-social-media-user-vector-image-icon-default-avatar-profile-icon-social-media-user-vector-image-209162840.jpg"}/> 
+             <Avatar variant="square" src={user?.photo_url? user.photo_url : ""}/> 
              <span className="header__option--avatar__username">{user?.username}</span>  
            </NavLink> 
           <NavLink className="header__option" onClick={logoutUser} to="/">

@@ -14,8 +14,6 @@ const PrivateRoute = ({ component: Component, ...props }) => {
     const authenticated = useSelector((state) => state.auth.authenticated);
     const loading = useSelector((state) => state.auth.loading);
 
-    console.log(authenticated);
-    console.log(loading)
     useEffect(() => {
          verifyAuthenticatedUser();
         //eslint-disable-next-line

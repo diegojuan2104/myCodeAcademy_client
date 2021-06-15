@@ -4,19 +4,9 @@ import "./About.styles.scss";
 
 import { authenticatedUser } from "../../redux/actions/authActions";
 import Header from "../Header/Header.component";
-import Logo from "../Logo/Logo.component";
 
-function About(props) {
-  const dispatch = useDispatch();
-  const loading = useSelector((state) => state.auth.loading);
 
-  const verifyAuthenticatedUser = () => dispatch(authenticatedUser());
-
-  //En caso de mensaje
-  useEffect(() => {
-    verifyAuthenticatedUser();
-  }, []);
-
+function About() {
   return (
     <div className="container">
       <Header />

@@ -1,14 +1,10 @@
 import {
+  AUTH_LOADING,
+  AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_ERROR,
-  LOGIN_PROCESS,
-  SIGNUP_PROCESS,
   SIGNUP_SUCCESS,
-  SIGNUP_ERROR,
-  LOG_OUT,
-  GETUSER_PROCESS,
   GETUSER_SUCCESS,
-  GETUSER_ERROR
+  LOG_OUT,
 } from "../types/index";
 import axiosClient from "../../config/axios";
 import Swal from "sweetalert2";
@@ -25,16 +21,15 @@ export function loginAction(user) {
 
     } catch (error) {
      
-      dispatch(loginError(error.response.data.msg));
+      dispatch(loginError(error.response?.data.msg));
 
-      alert(error.response.data.msg);
+      alert(error.response?.data.msg);
     }
   };
 }
 
 const login = () => ({
-  type: LOGIN_PROCESS,
-  payload: true,
+  type: AUTH_LOADING,
 });
 
 const loginSuccess = (token) => ({
@@ -43,7 +38,7 @@ const loginSuccess = (token) => ({
 });
 
 const loginError = (estado) => ({
-  type: LOGIN_ERROR,
+  type: AUTH_ERROR,
   payload: estado,
 });
 
@@ -60,15 +55,14 @@ export function signupAction(user) {
       Swal.fire("Succed", "Sing Up Completed!", "success");
     } catch (error) {
       dispatch(signupError(error.response.data));
-      alert(error.response.data.errors ?  error.response.data.errors[0].msg : error.response.data.msg,
+      alert(error.response?.data.errors ?  error.response?.data.errors[0].msg : error.response?.data.msg,
       )
     }
   };
 }
 
 const signup = () => ({
-  type: SIGNUP_PROCESS,
-  payload: true,
+  type: AUTH_LOADING,
 });
 
 const signupSuccess = (token) => ({
@@ -77,7 +71,7 @@ const signupSuccess = (token) => ({
 });
 
 const signupError = (state) => ({
-  type: SIGNUP_ERROR,
+  type: AUTH_ERROR,
   payload: state,
 });
 
@@ -100,7 +94,7 @@ export function authenticatedUser() {
 }
 
 const getUser = () => ({
-  type: GETUSER_PROCESS,
+  type: AUTH_LOADING,
 });
 
 
@@ -110,7 +104,7 @@ const getUserSuccess = (user) => ({
 });
 
 const getUserError = () => ({
-  type: GETUSER_ERROR,
+  type: AUTH_ERROR,
 });
 
 //User logout
