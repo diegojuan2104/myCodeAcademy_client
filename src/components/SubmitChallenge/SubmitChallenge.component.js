@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SubmitChallenge.styles.scss";
 import { getOneChallengeAction } from "../../redux/actions/challengesActions";
 import Header from "../Header/Header.component";
 import { useParams, useHistory } from "react-router-dom";
 import AceEditor from "react-ace";
-import 'brace/mode/javascript';
-import 'brace/theme/chaos';
+import "brace/mode/javascript";
+import "brace/theme/chaos";
 
 function SubmitChallenge() {
   const { id } = useParams();
@@ -19,6 +19,7 @@ function SubmitChallenge() {
     }
   }, []);
   const challenge = useSelector((state) => state.challenges.challenge_selected);
+  const [code, setCode] = useState("");
   return (
     <div className="container">
       <Header />
@@ -27,31 +28,44 @@ function SubmitChallenge() {
           <h1>{challenge?.title}</h1>
           <div className="submitChallenge__text">
             <p>{challenge?.text}</p>
-            <p>Input:</p>
+            <label for="test-data" className="underline">
+              Test data:
+            </label>
             <textarea
+              id="test-data"
               value={challenge?.input}
               className="submitChallenge__input"
             ></textarea>
+            <label for="editor" className="underline">
+              Your solution:
+            </label>
             <AceEditor
-              placeholder="Placeholder Text"
+              id="editor"
+              width={100}
+              placeholder=" YOUR CODE HERE!, You can write in any language you want."
               mode="javascript"
               theme="chaos"
-              name="blah2"
-              fontSize={14}
+              fontSize={16}
               showPrintMargin={true}
               showGutter={true}
               highlightActiveLine={true}
-              value={`function onLoad(editor) {
-  console.log("i've loaded");
-}`}
+              value={code}
               setOptions={{
                 enableBasicAutocompletion: false,
                 enableLiveAutocompletion: false,
-                enableSnippets: false,
+                enableSnippets: true,
                 showLineNumbers: true,
                 tabSize: 2,
               }}
             />
+            
+            <form action="">
+            <label for="" className="underline">
+              Your Answer:
+            </label>
+              <input placeholder="Paste here the answer from your program" type="text" className="input-answer"/>
+              <button className="submit-button">Submit</button>
+            </form>
           </div>
         </div>
       </div>

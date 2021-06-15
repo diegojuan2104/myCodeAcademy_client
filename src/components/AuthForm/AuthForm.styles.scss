@@ -106,8 +106,6 @@
           }
         }
       }
-
-
       .submit-button {
         align-self: flex-end;
         background-color: $primary-green;
@@ -126,45 +124,6 @@
       }
     }
 
-    .auth__form__social-conection {
-      display: flex;
-      width: 100%;
-      justify-content: space-evenly;
-      margin-bottom: 20px;
-      div {
-        border-bottom: solid 2px lightgray;
-        width: 100px;
-      }
-    }
-
-    .auth__form__social-conection {
-      display: flex;
-      width: 100%;
-      justify-content: space-evenly;
-      margin-bottom: 20px;
-
-      div {
-        border-bottom: solid 2px lightgray;
-        width: 100px;
-      }
-    }
-
-    .auth__form__social-conection-icons {
-      display: flex;
-      justify-content: space-evenly;
-      img {
-        height: 45px;
-        margin: 20px;
-      }
-
-      img:hover {
-        height: 47px;
-        cursor: pointer;
-      }
-      div {
-        border-left: solid 0.5px whitesmoke;
-      }
-    }
   }
 
 }
