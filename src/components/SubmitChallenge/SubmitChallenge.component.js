@@ -18,8 +18,19 @@ function SubmitChallenge() {
       getOneChallengePetition(id);
     }
   }, []);
+
+  const [codeSolution, setCodeSolution] = useState("");
+
+  const submitChallengeSolution = (e) => {
+    e.preventDefault();
+    console.log(codeSolution)
+    if(codeSolution === ""){
+      alert("You should submit a solution")
+    }
+  };
   const challenge = useSelector((state) => state.challenges.challenge_selected);
-  const [code, setCode] = useState("");
+
+
   return (
     <div className="container">
       <Header />
@@ -45,11 +56,12 @@ function SubmitChallenge() {
               placeholder=" YOUR CODE HERE!, You can write in any language you want."
               mode="javascript"
               theme="chaos"
+              onChange={setCodeSolution}
               fontSize={16}
               showPrintMargin={true}
               showGutter={true}
               highlightActiveLine={true}
-              value={code}
+              value={codeSolution}
               setOptions={{
                 enableBasicAutocompletion: false,
                 enableLiveAutocompletion: false,
@@ -59,12 +71,12 @@ function SubmitChallenge() {
               }}
             />
             
-            <form action="">
+            <form onSubmit={submitChallengeSolution}>
             <label for="" className="underline">
               Your Answer:
             </label>
               <input placeholder="Paste here the answer from your program" type="text" className="input-answer"/>
-              <button className="submit-button">Submit</button>
+              <button className="submit-button" type="submit">Submit</button>
             </form>
           </div>
         </div>
